@@ -4,20 +4,50 @@
         <meta charset="utf-8">
         <title>Jquery exercices base 3</title>
         <link rel="stylesheet" href="style.css">
+        <script src="jquery.js"></script>
     </head>
     <body>
         <h1>Exercices Jquery base 3</h1>
-        <p><b>Charger la dernière version de Jquery et lier le fichier dans la balise head du document html.</b></p>
 
         <hr>
         <!-------------------------------------------- Exercice 1 -------------------------------------->
         <h3><em>Exercice 1</em></h3>
         <p>Céer un bouton et un champ texte dans lequel on affiche le nombre de clics sur le bouton.</p>
+        <button type="button" id="clickmoi">clickmoi</button>
+        <p id="compteur"></p>
 
+<script>
+        $(document).ready(function(){
+          var compteur=0;
+                    $("#clickmoi").click(function(){
+                    compteur++;
+                    $("#compteur").text("compteur de clicks: "+compteur);
+                  });
+        });
+</script>
         <hr>
         <!-------------------------------------------- Exercice 2 -------------------------------------->
         <h3>Exercice 2</h3>
         <p>Céer 2 boutons ("+" et "-") et un champ texte dans lequel on augmente ou baisse le chiffre en fonction des boutons cliqués</p>
+        <button type="button" id="btnplus">+</button>
+        <p id="texte"></p>
+        <button type="button" id="btnmoins">-</button>
+
+<script>
+        $(document).ready(function(){
+          var chiffre=0;
+          $("#btnplus").click(function(){
+          chiffre++;
+          $("#texte").text("boutons cliques: " +chiffre);
+          });
+
+          var chiffre=0;
+          $("#btnmoins").click(function(){
+          chiffre--;
+          $("#texte").text("boutons cliques: " +chiffre);
+          });
+        });
+</script>
 
         <hr>
         <!-------------------------------------------- Exercice 3 -------------------------------------->
@@ -32,7 +62,46 @@
             <li>Bouton 5 : fait réaparaître le rectangle</li>
         </ul>
         </p>
+      <button type="button" id="modifhauteur">Bouton1</button>
+      <button type="button" id="modifvert">Bouton2</button>
+      <button type="button" id="modifcouleur">Bouton3</button>
+      <button type="button" id="disp">Bouton4</button>
+      <button type="button" id="reap">Bouton5</button>
+      <div id="rectangle"></div>
 
+  <script>
+      $(document).ready(function(){
+          var hauteur= 10;
+          $("#modifhauteur").click(function(){
+          hauteur=hauteur+10;
+          if (hauteur>100){
+          hauteur=10;
+          }
+          var hauteurpx=hauteur+"px";
+          $("#rectangle").css({"height":hauteurpx})
+        });
+
+          $("#modifvert").click(function(){
+          $("#rectangle").css({
+          "border-color":"green",
+          });
+          });
+          $("#modifcouleur").click(function(){
+          $("#rectangle").css({
+          "border-color":"black",
+          });
+          });
+          $("#disp").click(function(){
+          $("#rectangle").slideToggle();
+          $("#rectangle").toggle();
+          });
+          $("#reap").click(function(){
+          $("#rectangle").slideToggle();
+          $("#rectangle").toggle();
+          $("#rectangle").fadeToggle();
+          });
+        });
+  </script>
 
         <hr>
         <!-------------------------------------------- Exercice 4 -------------------------------------->
@@ -47,8 +116,31 @@
         <p><b>Bonus</b> : Quand la réponse est trouvée, on obtient le nombre d'essai que l'on a fait.
         </p>
         <hr>
+        <input type="text" name="input" id="rep" value="">
+        <input type="button" name="bouton" id="btnjeu" value="cherche"/>
+        <p id="txtreponse"></p>
 
 
+      <script>
+        $(document).ready(function(){
 
+          var nbrealeat=Math.floor(Math.random()*100);
+          var nbressai=0;
+          $("#btnjeu").click(function()
+          {
+            var reponse=$("#rep").val();
+            nbressai++;
+              if (reponse<nbrealeat){
+              $("#txtreponse").text("plus!");
+              }
+              else if (reponse>nbrealeat) {
+              $("#txtreponse").text("moins");
+              }
+              else {
+              $("#txtreponse").text("correct vous avez fait "+nbressai+" essais");
+              }
+          })
+        });
+      </script>
     </body>
 </html>
